@@ -2,18 +2,18 @@
 
 ## 0. Phân bổ thời gian (4 giờ)
 
-| Thời lượng | Hoạt động | Kết quả phải có |
-| ---: | --- | --- |
-| 0:00-0:15 | Đọc luật gán nhãn, mở CVAT, tạo task cho `clip_02` | task CVAT chạy được |
-| 0:15-0:45 | **Warm-up**: gán `clip_02` (60 frame, 6 track), tự chấm ngay với gold có sẵn | `annotations/clip_02/gt.txt`, IDF1 >= 0.80 |
-| 0:45-1:30 | **Bài chính, sprint 1**: gán `clip_01`, ưu tiên identity và lưu an toàn | task CVAT đã Save |
-| 1:30-1:40 | **Nghỉ 10 phút**: reload task trước khi rời màn hình | track vẫn còn sau reload |
-| 1:40-2:15 | **Bài chính, sprint 2**: hoàn tất `clip_01` (190 frame, tối thiểu 6 track hợp lệ) | `annotations/clip_01/gt.txt` |
-| 2:15-2:35 | Tự kiểm ba lượt + `check_mot_labels.py` + kiểm chéo với bạn cùng nhóm | `reports/review_partner.md` |
-| 2:35-2:45 | **Khóa pre-gold bằng script**, Lab Coach xác nhận hash, rồi mới nhận `gold/clip_01/` | `evidence/pre-gold/clip_01/{gt.txt,manifest.json}` |
-| 2:45-3:15 | Chấm với gold, đọc danh sách lỗi, rework, chạy lại | `outputs/eval_vs_gold.json`, qua cổng |
-| 3:15-3:45 | Colab: ByteTrack control + BoT-SORT-ReID | 2 file MOT + comparison JSON |
-| 3:45-4:00 | Viết báo cáo, commit, push | `reports/REPORT.md` |
+| Thời lượng | Hoạt động                                                                                        | Kết quả phải có                                  |
+| ------------: | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+|     0:00-0:15 | Đọc luật gán nhãn, mở CVAT, tạo task cho`clip_02`                                          | task CVAT chạy được                              |
+|     0:15-0:45 | **Warm-up**: gán `clip_02` (60 frame, 6 track), tự chấm ngay với gold có sẵn          | `annotations/clip_02/gt.txt`, IDF1 >= 0.80         |
+|     0:45-1:30 | **Bài chính, sprint 1**: gán `clip_01`, ưu tiên identity và lưu an toàn             | task CVAT đã Save                                  |
+|     1:30-1:40 | **Nghỉ 10 phút**: reload task trước khi rời màn hình                                   | track vẫn còn sau reload                           |
+|     1:40-2:15 | **Bài chính, sprint 2**: hoàn tất `clip_01` (190 frame, tối thiểu 6 track hợp lệ)   | `annotations/clip_01/gt.txt`                       |
+|     2:15-2:35 | Tự kiểm ba lượt +`check_mot_labels.py` + kiểm chéo với bạn cùng nhóm                    | `reports/review_partner.md`                        |
+|     2:35-2:45 | **Khóa pre-gold bằng script**, Lab Coach xác nhận hash, rồi mới nhận `gold/clip_01/` | `evidence/pre-gold/clip_01/{gt.txt,manifest.json}` |
+|     2:45-3:15 | Chấm với gold, đọc danh sách lỗi, rework, chạy lại                                          | `outputs/eval_vs_gold.json`, qua cổng             |
+|     3:15-3:45 | Colab: ByteTrack control + BoT-SORT-ReID                                                            | 2 file MOT + comparison JSON                         |
+|     3:45-4:00 | Viết báo cáo, commit, push                                                                       | `reports/REPORT.md`                                |
 
 Mốc 2:35 là mốc cứng. Teaching reference chỉ được mở sau khi snapshot độc lập
 đã tồn tại và hash đã được xác nhận.
@@ -43,11 +43,11 @@ ngoài schema. Gán thêm là bbox thừa (FP), bị trừ điểm.
 
 ### Ba quyết định phải nhất quán — ghi vào `GUIDELINE_MINI.md`
 
-| Tình huống | Quyết định mặc định của lab | Ghi chú |
-| --- | --- | --- |
-| Xe bị che rồi hiện lại | **giữ nguyên ID cũ** nếu che dưới 2 giây (= 25 frame ở 12.5 fps) | quá 2 giây thì mở track mới |
-| Xe rời khung rồi quay lại | **track mới** | đã ra khỏi khung là kết thúc track |
-| Xe mới xuất hiện, còn rất nhỏ / mờ | bắt đầu track từ frame **đầu tiên xác định được đó là xe bốn bánh** | ghi lại ngưỡng bạn chọn |
+| Tình huống                              | Quyết định mặc định của lab                                                         | Ghi chú                                 |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| Xe bị che rồi hiện lại                | **giữ nguyên ID cũ** nếu che dưới 2 giây (= 25 frame ở 12.5 fps)             | quá 2 giây thì mở track mới         |
+| Xe rời khung rồi quay lại              | **track mới**                                                                       | đã ra khỏi khung là kết thúc track |
+| Xe mới xuất hiện, còn rất nhỏ / mờ | bắt đầu track từ frame**đầu tiên xác định được đó là xe bốn bánh** | ghi lại ngưỡng bạn chọn             |
 
 Ba luật này là *mặc định của lab*. Nếu nhóm bạn chọn khác, phải viết rõ trong
 `GUIDELINE_MINI.md` và áp dụng nhất quán cho cả clip.
@@ -196,12 +196,12 @@ rõ. Đó là phát hiện giá trị nhất của bước này. Ghi vào `repor
 
 ### Reviewer checklist
 
-- [ ] Số track khớp với số xe đếm được khi xem clip bằng mắt
-- [ ] Mọi track có frame đầu và frame cuối hợp lý — không treo, không cắt sớm
-- [ ] Không có ID nào xuất hiện hai lần trong cùng một frame
-- [ ] Xe bị che rồi hiện lại vẫn giữ nguyên ID
-- [ ] Export đúng MOT 1.1; số ID khác nhau khớp với số track
-- [ ] Mọi ca không rõ đều được ghi lại trong `GUIDELINE_MINI.md`
+- [X] Số track khớp với số xe đếm được khi xem clip bằng mắt
+- [X] Mọi track có frame đầu và frame cuối hợp lý — không treo, không cắt sớm
+- [X] Không có ID nào xuất hiện hai lần trong cùng một frame
+- [X] Xe bị che rồi hiện lại vẫn giữ nguyên ID
+- [X] Export đúng MOT 1.1; số ID khác nhau khớp với số track
+- [X] Mọi ca không rõ đều được ghi lại trong `GUIDELINE_MINI.md`
 
 ---
 
@@ -246,14 +246,14 @@ python3 tools/evaluate_tracking.py \
 
 ### Đọc các chỉ số
 
-| Chỉ số | Trả lời câu hỏi | Giống gì ở Ngày 2 |
-| --- | --- | --- |
-| **DetA** | Có tìm ra xe không? | chính là precision/recall của detection |
-| **AssA** | Có giữ đúng ID không? | **mới hoàn toàn** — phần riêng của tracking |
-| **HOTA** | `sqrt(DetA x AssA)` — điểm tổng | hỏng một trong hai là tụt |
-| **LocA / MOTP** | Bbox khít đến đâu | mean IoU của Ngày 2 |
-| **IDF1** | Giữ đúng ID trên **toàn bộ quãng đời** của xe | — |
-| **MOTA** | Tổng FP + FN + ID switch | — |
+| Chỉ số              | Trả lời câu hỏi                                          | Giống gì ở Ngày 2                                    |
+| --------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
+| **DetA**        | Có tìm ra xe không?                                       | chính là precision/recall của detection               |
+| **AssA**        | Có giữ đúng ID không?                                   | **mới hoàn toàn** — phần riêng của tracking |
+| **HOTA**        | `sqrt(DetA x AssA)` — điểm tổng                        | hỏng một trong hai là tụt                            |
+| **LocA / MOTP** | Bbox khít đến đâu                                       | mean IoU của Ngày 2                                    |
+| **IDF1**        | Giữ đúng ID trên**toàn bộ quãng đời** của xe | —                                                       |
+| **MOTA**        | Tổng FP + FN + ID switch                                    | —                                                       |
 
 **Một điều phải để ý**: MOTA đếm mỗi ID switch đúng **một lần**, nên một track bị
 cắt làm đôi chỉ tốn 1 điểm MOTA — MOTA vẫn có thể rất cao (0.95) trong khi nhãn
@@ -312,12 +312,12 @@ trước, rồi xem DetA/FP/FN và frame sequence để mô tả treatment tốt
 hay không đổi đáng kể. Đây là system comparison: ByteTrack và BoT-SORT khác
 implementation, nên không kết luận ReID một mình là nguyên nhân.
 
-| So sánh | Trả lời |
-| --- | --- |
-| bạn vs gold | nhãn của bạn tốt đến đâu |
-| ByteTrack vs gold | control giữ identity tốt đến đâu |
-| BoT-SORT + ReID vs gold | treatment appearance-assisted thay đổi tracking thế nào |
-| ReID vs bạn | chỗ treatment và nhãn tay không đồng ý — đây là chỗ đáng soi nhất |
+| So sánh                | Trả lời                                                                        |
+| ----------------------- | -------------------------------------------------------------------------------- |
+| bạn vs gold            | nhãn của bạn tốt đến đâu                                                 |
+| ByteTrack vs gold       | control giữ identity tốt đến đâu                                           |
+| BoT-SORT + ReID vs gold | treatment appearance-assisted thay đổi tracking thế nào                      |
+| ReID vs bạn            | chỗ treatment và nhãn tay không đồng ý — đây là chỗ đáng soi nhất |
 
 Cách đọc chỗ không đồng ý:
 
